@@ -47,6 +47,22 @@
         };
     };
 
+    macros {
+        accent_e_macro: accent_e_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp RALT &kp RSHFT>,
+                <&macro_tap>,
+                <&kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N3>,
+                <&macro_release>,
+                <&kp RSHIFT &kp RALT>;
+
+            label = "ACCENT_E_MACRO";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -97,10 +113,10 @@
 
         layer_3 {
             bindings = <
-&trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans  &trans
-                                        &trans        &trans        &trans          &trans  &trans  &trans
+&trans      &trans        &trans        &accent_e_macro  &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans        &trans        &trans           &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans  &trans
+                                        &trans           &trans        &trans          &trans  &trans  &trans
             >;
         };
     };
