@@ -15,5 +15,6 @@ manifest:
     - name: zmk-locales
       remote: joelspadin
       revision: main
+      path: modules/lib/zmk-locales
   self:
     path: config
