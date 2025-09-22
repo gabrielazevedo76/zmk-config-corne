@@ -90,7 +90,7 @@
 
             bindings = <
 &kp TAB    &kp EXCLAMATION  &kp AT_SIGN       &kp HASH          &kp DOLLAR            &kp PERCENT     &kp CARET      &kp AMPERSAND          &kp ASTERISK     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp DELETE
-&kp LALT   &kp NUMBER_1     &kp NUMBER_2      &kp NUMBER_3      &kp NUMBER_4          &kp NUMBER_5    &kp NUMBER_6   &kp NUMBER_7           &kp NUMBER_8     &kp NUMBER_9          &kp NUMBER_0           &trans
+&kp LALT   &kp NUMBER_1     &kp NUMBER_2      &kp NUMBER_3      &kp NUMBER_4          &kp NUMBER_5    &kp NUMBER_6   &kp NUMBER_7           &kp NUMBER_8     &kp NUMBER_9          &kp NUMBER_0           &kp BACKSLASH
 &kp LSHFT  &kp UNDER        &kp LEFT_BRACKET  &kp LEFT_BRACE    &kp LEFT_PARENTHESIS  &kp MINUS       &kp EQUAL      &kp RIGHT_PARENTHESIS  &kp RIGHT_BRACE  &kp RIGHT_BRACKET     &kp PLUS               &kp TILDE
                                               &kp LEFT_CONTROL  &trans                &kp SPACE       &kp BACKSPACE  &kp RIGHT_GUI          &kp RALT
             >;
