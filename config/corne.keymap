@@ -1,10 +1,14 @@
+
 /*
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
  *
- * Corne 42 teclas — pt-BR / Linux (niri)
+ * Corne 42 teclas — pt-BR / Linux (niri) — VERSAO CONSOLIDADA
  * Sistema esperado: xkb layout "us", variant "altgr-intl"
+ *
+ * Polegares:  CTRL | GUI/Enter | ESPACO   ||   BKSP | NAV | SYM
+ * Alt:        mindinho esquerdo, linha do meio
  *
  * Posicoes das teclas (para combos):
  *   0  1  2  3  4  5      6  7  8  9 10 11
@@ -37,7 +41,6 @@
     combos {
         compatible = "zmk,combos";
 
-        /* J + K -> ESC (do seu keymap original) */
         combo_vim_esc {
             bindings = <&kp ESC>;
             key-positions = <19 20>;
@@ -45,13 +48,6 @@
     };
 
     behaviors {
-        /*
-         * Layer-tap balanceado, para a tecla do canto inferior direito
-         * (tap = hifen, hold = camada de acentos).
-         * "balanced" resolve como hold so se outra tecla for pressionada E
-         * solta durante o hold; require-prior-idle-ms forca o tap quando voce
-         * acabou de digitar, que e onde os falsos positivos moram.
-         */
         lt_bal: layer_tap_balanced {
             compatible = "zmk,behavior-hold-tap";
             label = "LT_BAL";
@@ -64,7 +60,6 @@
             require-prior-idle-ms = <125>;
         };
 
-        /* Hold = GUI, tap = Enter — herdado do seu holdtap_lgui_return */
         gui_ret: holdtap_gui_return {
             compatible = "zmk,behavior-hold-tap";
             label = "GUI_RET";
@@ -80,22 +75,20 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            // ---------------------------------------------------------------------------------
             // | ESC  | Q | W | E | R | T |   | Y | U | I | O | P | SFT/` |
             // | ALT  | A | S | D | F | G |   | H | J | K | L | ; |   '   |
             // | SHFT | Z | X | C | V | B |   | N | M | , | . | / | ACC/- |
-            //               | SYM | GUI/RET | SPACE |   | BSPC | NAV | CTRL |
+            //              | CTRL | GUI/RET | ESPACO |   | BKSP | NAV | SYM |
 
             bindings = <
-&kp ESC    &kp Q  &kp W  &kp E    &kp R              &kp T          &kp Y          &kp U    &kp I      &kp O    &kp P          &mt RSHFT GRAVE
-&kp LALT   &kp A  &kp S  &kp D    &kp F              &kp G          &kp H          &kp J    &kp K      &kp L    &kp SEMICOLON  &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C    &kp V              &kp B          &kp N          &kp M    &kp COMMA  &kp DOT  &kp FSLH       &lt_bal ACC MINUS
-                         &mo SYM  &gui_ret LGUI RET  &kp SPACE      &kp BACKSPACE  &mo NAV  &kp LCTRL
+&kp ESC    &kp Q  &kp W  &kp E      &kp R              &kp T          &kp Y          &kp U    &kp I      &kp O    &kp P          &mt RSHFT GRAVE
+&kp LALT   &kp A  &kp S  &kp D      &kp F              &kp G          &kp H          &kp J    &kp K      &kp L    &kp SEMICOLON  &kp SQT
+&kp LSHFT  &kp Z  &kp X  &kp C      &kp V              &kp B          &kp N          &kp M    &kp COMMA  &kp DOT  &kp FSLH       &lt_bal ACC MINUS
+                         &kp LCTRL  &gui_ret LGUI RET  &kp SPACE      &kp BACKSPACE  &mo NAV  &mo SYM
             >;
         };
 
         lower_layer {
-            // ---------------------------------------------------------------------------------
             // | TAB | ! | @ | # | $ | % |   | ^ | & | * | ( | ) | DEL |
             // |     | 1 | 2 | 3 | 4 | 5 |   | 6 | 7 | 8 | 9 | 0 |  \  |
             // |     | _ | [ | { | ( | - |   | = | ) | } | ] | + |  ~  |
@@ -104,12 +97,11 @@
 &kp TAB  &kp EXCL   &kp AT    &kp HASH  &kp DLLR  &kp PRCNT     &kp CARET  &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &kp DEL
 &trans   &kp N1     &kp N2    &kp N3    &kp N4    &kp N5        &kp N6     &kp N7    &kp N8    &kp N9    &kp N0    &kp BSLH
 &trans   &kp UNDER  &kp LBKT  &kp LBRC  &kp LPAR  &kp MINUS     &kp EQUAL  &kp RPAR  &kp RBRC  &kp RBKT  &kp PLUS  &kp TILDE
-                              &trans    &trans    &trans        &trans     &mo ADJ   &trans
+                              &mo ADJ   &trans    &trans        &trans     &trans    &trans
             >;
         };
 
         raise_layer {
-            // ---------------------------------------------------------------------------------
             // | F1 | F2 | F3 | F4  | F5  | F6 |   | F7 | F8 | F9 |F10 |F11 |F12 |
             // |    |    |    |HOME | END |    |   |  < |  v |  ^ |  > |INS |DEL |
             // |    |    |    |PGDN |PGUP |    |   |PSCR|MENU|    |    |    |    |
@@ -123,8 +115,7 @@
         };
 
         adjust_layer {
-            // ---------------------------------------------------------------------------------
-            // Acesso: SYM + NAV ao mesmo tempo (polegar esquerdo externo + direito do meio).
+            // Acesso: polegar esquerdo externo + NAV ou SYM.
 
             bindings = <
 &bootloader  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp C_PREV     &kp C_PLAY_PAUSE  &kp C_NEXT  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE
@@ -135,10 +126,9 @@
         };
 
         accent_layer {
-            // ---------------------------------------------------------------------------------
-            // Segura o canto inferior direito (a tecla do hifen), mao esquerda toca o acento:
+            // Segura o canto inferior direito. Mao esquerda toca o acento:
             //   A = `   S = ^   D = ~   F = ´   G = c-cedilha
-            // Solta e digita a vogal. Tecla morta nao mostra nada na hora — e o correto.
+            //   Q = trema   W = C-cedilha maiusculo
 
             bindings = <
 &trans  &kp TREMA   &kp CEDILC  &trans   &trans     &trans        &trans  &trans  &trans  &trans  &trans  &trans
@@ -149,4 +139,3 @@
         };
     };
 };
-
